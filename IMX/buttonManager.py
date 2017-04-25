@@ -264,7 +264,8 @@ class buttonManager():
             if self.shotMgr.currentShot == shots.APP_SHOT_RTL:
                 self.shotMgr.curController.handleButton(button, event)
             elif event == btn_msg.Press:
-                self.shotMgr.enterShot(shots.APP_SHOT_RTL)
+                #self.shotMgr.enterShot(shots.APP_SHOT_RTL) #Disabled by Matt
+                self.shotMgr.vehicle.mode = VehicleMode("RTL")
 
         if button == btn_msg.ButtonCameraClick and event == btn_msg.Press:
             self.shotMgr.goproManager.handleRecordCommand(self.shotMgr.goproManager.captureMode, RECORD_COMMAND_TOGGLE)

@@ -297,8 +297,9 @@ class ShotManager():
                 logger.log("[callback]: Mode changed from %s -> %s"%(self.lastMode, mode.name))
                 
                 if mode.name == 'RTL':
-                    logger.log("[callback]: System entered RTL, switch to shot!")
-                    self.enterShot(shots.APP_SHOT_RTL)
+                    logger.log("[callback]: Sytem entered RTL, skipping Smart RTH Shot")
+                    #logger.log("[callback]: System entered RTL, switch to shot!") #Disabled by Matt
+                    #self.enterShot(shots.APP_SHOT_RTL)
 
                 elif self.currentShot != shots.APP_SHOT_NONE:
                     # looks like somebody switched us out of guided!  Exit our current shot
@@ -473,11 +474,13 @@ class ShotManager():
             return
     
         if self.rewindManager.enabled:
-            self.enterShot(shots.APP_SHOT_REWIND)
-            self.curController.exitToRTL = True
+            #self.enterShot(shots.APP_SHOT_REWIND) #Disabled by Matt
+            #self.curController.exitToRTL = True
+            self.vehicle.mode = VehicleMode("RTL")
             
         else:
-            self.enterShot(shots.APP_SHOT_RTL)
+            self.vehicle.mode = VehicleMode("RTL")
+            #self.enterShot(shots.APP_SHOT_RTL) #Disabled by Matt
 
 
     def registerCallbacks(self):
