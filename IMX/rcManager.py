@@ -120,7 +120,7 @@ class rcManager():
     def remap(self):
         if self.failsafe or self.channels == None:
             # send default values to the Pixhawk
-            self.channels = [DEFAULT_RC_MID, DEFAULT_RC_MID, DEFAULT_RC_MID, DEFAULT_RC_MID, DEFAULT_RC_MIN, CHANNEL6_MAX, DEFAULT_RC_MIN, CHANNEL8_MID ]
+            self.channels = [DEFAULT_RC_MID, DEFAULT_RC_MID, THROTTLE_FAILSAFE, DEFAULT_RC_MID, DEFAULT_RC_MIN, CHANNEL6_MAX, DEFAULT_RC_MIN, CHANNEL8_MID ]
 
         normChannels = [0]*8
 
