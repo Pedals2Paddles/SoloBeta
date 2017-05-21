@@ -605,42 +605,56 @@ class FollowShot():
         # if we do have a gimbal, use mount_control to set pitch and yaw
         if self.vehicle.mount_status[0] is not None:
             msg = self.vehicle.message_factory.mount_control_encode(
-                        0, 1,    # target system, target component
-                        # pitch is in centidegrees
-                        self.camPitch * 100,
-                        0.0, # roll
-                        # yaw is in centidegrees
-                        self.camYaw * 100,
-                        0 # save position
-                        )
+                0, 1,    # target system, target component
+                # pitch is in centidegrees
+                self.camPitch * 100,
+                0.0, # roll
+                # yaw is in centidegrees
+                0, #self.camYaw * 100, (Disabled by Matt due to ArduCopter master mount_control problem)
+                0 # save position
+            )
+            self.vehicle.send_mavlink(msg)
+            
+            msg = self.vehicle.message_factory.command_long_encode(
+                0, 0,    # target system, target component
+                mavutil.mavlink.MAV_CMD_CONDITION_YAW, #command
+                0, #confirmation
+                self.camYaw,  # param 1 - target angle
+                YAW_SPEED, # param 2 - yaw speed
+                self.camDir, # param 3 - direction
+                0.0, # relative offset
+                0, 0, 0 # params 5-7 (unused)
+            )
+            self.vehicle.send_mavlink(msg)
+                        
         else:
             # if we don't have a gimbal, just set CONDITION_YAW
             msg = self.vehicle.message_factory.command_long_encode(
-                        0, 0,    # target system, target component
-                        mavutil.mavlink.MAV_CMD_CONDITION_YAW, #command
-                        0, #confirmation
-                        self.camYaw,  # param 1 - target angle
-                        YAW_SPEED, # param 2 - yaw speed
-                        self.camDir, # param 3 - direction
-                        0.0, # relative offset
-                        0, 0, 0 # params 5-7 (unused)
-                        )
-        self.vehicle.send_mavlink(msg)
+                0, 0,    # target system, target component
+                mavutil.mavlink.MAV_CMD_CONDITION_YAW, #command
+                0, #confirmation
+                self.camYaw,  # param 1 - target angle
+                YAW_SPEED, # param 2 - yaw speed
+                self.camDir, # param 3 - direction
+                0.0, # relative offset
+                0, 0, 0 # params 5-7 (unused)
+            )
+            self.vehicle.send_mavlink(msg)
 
         
     def handleLookAtPointing(self, tempROI):
         # set ROI
         msg = self.vehicle.message_factory.command_int_encode(
-                    0, 1,    # target system, target component
-                    mavutil.mavlink.MAV_FRAME_GLOBAL_RELATIVE_ALT, #frame
-                    mavutil.mavlink.MAV_CMD_DO_SET_ROI, #command
-                    0, #current
-                    0, #autocontinue
-                    0, 0, 0, 0, #params 1-4
-                    tempROI.lat*1.E7,
-                    tempROI.lon*1.E7,
-                    tempROI.alt + self.ROIAltitudeOffset #offset for ROI
-                    )
+            0, 1,    # target system, target component
+            mavutil.mavlink.MAV_FRAME_GLOBAL_RELATIVE_ALT, #frame
+            mavutil.mavlink.MAV_CMD_DO_SET_ROI, #command
+            0, #current
+            0, #autocontinue
+            0, 0, 0, 0, #params 1-4
+            tempROI.lat*1.E7,
+            tempROI.lon*1.E7,
+            tempROI.alt + self.ROIAltitudeOffset #offset for ROI
+        )
 
         # send pointing message
         self.vehicle.send_mavlink(msg)
