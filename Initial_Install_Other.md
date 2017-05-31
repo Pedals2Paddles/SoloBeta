@@ -15,7 +15,7 @@ These instructions currently assume you already know how to use things like Miss
 5. **Unscrew the stock pixhawk:** There are 4 very small screws on the top of the carrier board. Unscrew them and set them aside. The stock pixhawk can now be removed. It will pull down off the carrier board. Set the stock pixhawk aside somewhere safe. You will want to keep it.
 
 6. **Install the green cube:** The green cube installs the same way the old one came off.  Plug it into the carrier board from the bottom.  Then put in the four screws.
-   ![Guts](https://github.com/Pedals2Paddles/SoloBeta/blob/master/Misc/Guts.jpg)
+   ![Guts](https://github.com/Pedals2Paddles/SoloBeta/blob/master/Misc/guts.jpg)
 
 7. **Do not reassemble yet:** It is best to do the initial firmware install with the Solo still opened up. If anything goes wrong, it avoids having to disassemble it again. 
 
@@ -41,8 +41,6 @@ These instructions currently assume you already know how to use things like Miss
     * Do the level calibration first on a decently level surface, such as a table. For each orientation, place Solo down gently, and let it settle for about 5 seconds before clicking through to the next one. Once complete, reboot the Solo.
     * The compass calibration must be done outdoors and away from structures, vehicles, and other metal objects. This applies to any vehicle running any firmware, not just a Solo, and not just ArduCopter master. Once complete, reboot the Solo.
 
-13. Once all of the above is complete, you are ready to fly! You should make your first few flights in a safe, open, and clear area. Start off low and slow. Run through the basics to function test everything.  Make sure the Solo is operating smoothly, reliably, safely, and as intended.
-
-14. ENJOY!
+13. **FLY!!** Once all of the above is complete, you are ready to fly! You should make your first few flights in a safe, open, and clear area. Start off low and slow. Run through the basics to function test everything.  Make sure the Solo is operating smoothly, reliably, safely, and as intended.
 
 [Back To Main](../master/README.md)
