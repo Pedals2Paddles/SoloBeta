@@ -1,14 +1,12 @@
 ![Logo](https://github.com/Pedals2Paddles/SoloBeta/blob/master/Misc/APsolo.jpg)
 
-Initial First Time Install Using the Solex App
------------------------------------------------
-These instructions are for first time installs of the Green Cube and ArduCopter master.  This is only for the initial install. These instructions use the Solex application on Android.  No need for Mission Planner, WinSCP, Filezilla, SSH, or a complicated passwords.
+Instructions
+------------
+These instructions currently assume you already know how to use things like Mission Planner and WinSCP or Filezilla. This method is somewhat complicated compared to using Solex. But this does work. Please read carefully and follow all steps in order.
 
 1. **Your solo should be in safe working order before you start**. It should not be malfunctioning or unreliable before you even begin. It must be up to date with the latest 3DR firmware. You cannot do this with a straight out of the box Solo. You must go through the full pre-flight update first on a new Solo.  Once your Solo is up to date and working well, you're ready to begin.
 
-2. **Update px_uploader:** Before doing anything else, you must load the new `px_uploader.py` file onto the Solo's companion computer. This can be loaded with the Solex app's firmware update function really easily with a few clicks! Select the `first-time-bootloader.zip` package. If it it says "available", Solex will download it. Once it says "downloaded, click the file and select install. When prompted, click the reboot button in the app.  The Solo will lose connection for about a minute while the companion computer reboots. It will then reconnect to the controller and application after booting
-
-   ![SolexScreenshot](https://github.com/Pedals2Paddles/SoloBeta/blob/master/Misc/Solex_Screenshot.jpg)
+2. **Update px_uploader:** Before doing anything else, you must load the new `px_uploader.py` file onto the Solo's companion computer. We're going to load all the python files while we're at it though. Use WinSCP, Filezilla, or other SCP/SSH application to put all the python files (`*.py`) in the /usr/bin/ directory of the companion computer, overwriting the ones that are there now.  Once you've copied them in, you will need to reboot the Solo for them to take effect. You don't need to keep redoing this every time you reset parameters or install new ArduCopter px4 files. These file will never change or revert unless you do a complete factory reset.
 
 3. **Remove the battery tray:** Remove the battery and pop off the GPS cover.  Then unscrew all the small black screws around the battery tray. The battery tray can now be lifted up.  Unplug the GPS from the carrier board.  Set the battery tray aside. We highly recommend you do not lose the screws.
 
@@ -17,23 +15,20 @@ These instructions are for first time installs of the Green Cube and ArduCopter 
 5. **Unscrew the stock pixhawk:** There are 4 very small screws on the top of the carrier board. Unscrew them and set them aside. The stock pixhawk can now be removed. It will pull down off the carrier board. Set the stock pixhawk aside somewhere safe. You will want to keep it.
 
 6. **Install the green cube:** The green cube installs the same way the old one came off.  Plug it into the carrier board from the bottom.  Then put in the four screws.
-  ![Guts](https://github.com/Pedals2Paddles/SoloBeta/blob/master/Misc/Guts.jpg)
-  
+   ![Guts](https://github.com/Pedals2Paddles/SoloBeta/blob/master/Misc/Guts.jpg)
+
 7. **Do not reassemble yet:** It is best to do the initial firmware install with the Solo still opened up. If anything goes wrong, it avoids having to disassemble it again. 
 
 8. **Power up the Solo and connect to controller:** Put the battery onto the solo. It will just sit atop the carrier board. Obviously you should avoid manhandling the Solo while like this since the battery can just fall off. So get everything situated first.  Turn on the battery.  The solo will power up as usual. After a short while, the Solo will reconnect with the controller as usual. It will probably give you all kinds of warnings about calibration. This is normal and expected.
 
-9. **Load the firmware and files using Solex**
- * In the Solex menu all the way at the bottom, select `Firmware Updates`.
- * While your device has an Internet connection, click the Solo Beta package to download it. The available status will change to downloaded.
- * If not already, reconnect to the Solo. 
- * Click the package and select `install`. All the files will be copied to the Solo in all the right places.
- * When prompted, click `reboot vehicle`. The solo will disconnect from the controller and app.
- * It will probably do the radio connection lost blinking LEDs since the companion computer is not connected to the pixhawk anymore. Don't worry, this is normal.
- * You will probably not see the multi-color disco lights usually associate with firmware updates on the solo. Don't worry. It's working.
- * Give it up to 5 minutes to process this awesomeness. You may hear some clicks as the Pixhawk reboots.
- * After 3-5 minutes, it will come back to life, reconnecting with the controller and applications. You will notice the lights now look like an aircraft rather than a car.
- * With the Solex app reconnected to the Solo, click the `Reset Params` button on the firmware update screen of Solex.  When prompted, power off the Solo and power it back on.
+9. **Load the firmware**
+ * Use an app such WinSCP or Filezilla connected to the Solo.
+ * Copy the `.px4` file into the Solo's `/firmware/` directory.
+ * Disconnect from the file transfer app.
+ * Power off the Solo and power it back on.
+ * It will detect the new file on boot, and go into bootloader. Give it time as it does its thing. This process takes approximately 5 minutes. There will be lots of colorful lights and beeping. Once it is done, it will play some musical tones and be ready for your input. If you've ever loaded the old 1.5.3 firmware on the Solo as described in the forms, this is the same procedure.
+ * After a short while, the controller will reconnect to the Solo.  Occassionally it gets lazy and both need to be power cycled to wake them up, which is nothing to worry about.
+ * After you've loaded the firmware, you must do a full parameter reset. Reconnect with Mission Planner. In Mission Planner's full parameter list, click the reset to defaults button on the right. The Pixhawk will reboot on it's own, with all the defaults taking over. After a short while, the controller will reconnect to the Solo.  Occassionally it gets lazy and both need to be power cycled to wake them up, which is nothing to worry about. If "Full Parameter List" is not visible on the "Config/Tuning" screen, select "Planner" and set Layout to "Advanced". Restart Mission Planner. 
  * Installation complete!
  
     _If the Solo doesn't seem to complete the installation after about 5 minutes, power off the Solo and power it back on.  A few people have experienced this. It took a few power cycles to get it go through. It is unknown why this happens.  But in those cases, power cycling 1-4 times got it to go._
