@@ -50,4 +50,4 @@ These instructions are for first time installs of the Green Cube and ArduCopter 
 
 14. ENJOY!
 
-[Back To Main](../blob/master/README.md)
+[Back To Main](../master/README.md)

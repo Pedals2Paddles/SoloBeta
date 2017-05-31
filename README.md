@@ -44,10 +44,10 @@ Useful Links
 Initial First Time Install Using the Solex App on Android
 ----------------------------------------------------------
 This is by far the easist and most highly recommended way to install the Green Cube and install ArduCopter. No need for Mission Planner, WinSCP, Filezilla, SSH, or a complicated passwords.
-[Solex initial install instructions](../blob/master/Initial_Install_Solex.md)
+[Solex initial install instructions](../master/Initial_Install_Solex.md)
 
 
 Initial First Time Install _without_ Solex
 -----------------------------------------------
 These instructions currently assume you already know how to use things like Mission Planner and WinSCP or Filezilla. Multiple applications and processes are required. I cannot provide detailed step by training on how to use these applications.
-[SCP & Mission Planner method intial install instructions](../blob/master/Initial_Install_Other.md)
+[SCP & Mission Planner method intial install instructions](../master/Initial_Install_Other.md)
